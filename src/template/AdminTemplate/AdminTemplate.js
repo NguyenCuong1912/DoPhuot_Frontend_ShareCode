@@ -8,12 +8,10 @@ import { NavLink } from 'react-router-dom';
 import { history } from '../../App';
 import _ from 'lodash'
 import { _logo } from '../../utils/Utils/ImgPath';
-import { UserOutlined } from '@ant-design/icons';
-import { BiGlassesAlt } from 'react-icons/bi';
-import { BsCardText, BsSunglasses } from 'react-icons/bs';
 
 
-const { Header, Content, Footer, Sider } = Layout;
+
+const { Content, Sider } = Layout;
 
 
 export default function AdminTemplate(props) {
@@ -37,7 +35,7 @@ export default function AdminTemplate(props) {
     const operations = <Fragment>
         {!_.isEmpty(userLogin) ? <div className='flex'>
             <NavLink to='/profile' className='flex'>
-                <img className='w-14 h-14 rounded-full' src='https://haycafe.vn/wp-content/uploads/2022/03/anh-Zoro-chibi-va-Luffy.jpg' alt={userLogin.username} />
+                <img className='w-14 h-14 rounded-full' src='https://phuotbuistore.com/wp-content/uploads/2018/11/Untitled-1.png' alt={userLogin.username} />
                 <span className='flex items-center border-r-2 border-green-900 text-lg font-bold mx-4 pr-4 cursor-pointer text-black'>Xin chào!, {userLogin.account.Username}</span>
             </NavLink>
             <button onClick={() => {
@@ -57,16 +55,16 @@ export default function AdminTemplate(props) {
                         <img className='h-20' src={_logo} alt='Phượt bụi Store' />
                     </div>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" style={{ backgroundColor: 'transparent' }}>
-                        <Menu.Item key='1' icon={<UserOutlined style={{ fontSize: 20 }} />}>
+                        <Menu.Item key='1' >
                             <NavLink className='text-black' to={`${_admin}${_account}`} >Accounts</NavLink>
                         </Menu.Item>
-                        <Menu.Item key='2' icon={<BiGlassesAlt style={{ fontSize: 25 }} />}>
+                        <Menu.Item key='2' >
                             <NavLink className='text-black' to={`${_admin}${_cate}`} >Category</NavLink>
                         </Menu.Item>
-                        <Menu.Item key='3' icon={<BsSunglasses style={{ fontSize: 25 }} />}>
-                            <NavLink className='text-black' to={`${_admin}${_product}`}>Glasses</NavLink>
+                        <Menu.Item key='3' >
+                            <NavLink className='text-black' to={`${_admin}${_product}`}>Product</NavLink>
                         </Menu.Item>
-                        <Menu.Item key='4' icon={<BsCardText style={{ fontSize: 20 }} />} >
+                        <Menu.Item key='4'  >
                             <NavLink className='text-black' to={`${_admin}${_bill}`}>Bill</NavLink>
                         </Menu.Item>
                     </Menu>

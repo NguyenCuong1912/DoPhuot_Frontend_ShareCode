@@ -23,11 +23,11 @@ export default function SuaAccount(props) {
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
-            Username: editUser.Username,
-            Password: editUser.Password,
-            Role: editUser.Role,
-            PhoneNumber: editUser.PhoneNumber,
-            Address: editUser.Address
+            Username: editUser?.Username,
+            Password: editUser?.Password,
+            Role: editUser?.Role,
+            PhoneNumber: editUser?.PhoneNumber,
+            Address: editUser?.Address
         },
         validationSchema: Yup.object({
             Username: Yup.string()

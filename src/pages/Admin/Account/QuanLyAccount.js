@@ -4,7 +4,7 @@ import { history } from './../../../App';
 import { _account, _add, _admin, _edit } from '../../../utils/Utils/ConfigPath';
 import { useDispatch, useSelector } from 'react-redux';
 import { DeleteUserAction, GetListUserAction } from '../../../redux/Actions/QuanLyAccountAction';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { BsFillTrashFill, BsPencilSquare } from 'react-icons/bs';
 
 
 
@@ -80,7 +80,7 @@ export default function QuanLyAccount() {
                     <button className='mx-4 text-green-500 hover:text-green-900' title='Sửa' onClick={() => {
                         history.push(`${_admin}${_account}${_edit}/${user.id}`)
                     }}>
-                        <EditOutlined style={{ fontSize: 25 }} />
+                        <BsPencilSquare style={{ fontSize: 25 }} />
                     </button>
 
                     <button className='mx-4 text-red-500 hover:text-red-900' title='Xóa' >
@@ -91,7 +91,7 @@ export default function QuanLyAccount() {
                             okText="Có"
                             cancelText="Không"
                         >
-                            <DeleteOutlined style={{ fontSize: 25 }} />
+                            <BsFillTrashFill style={{ fontSize: 25 }} />
                         </Popconfirm>
                     </button>
                 </div>
