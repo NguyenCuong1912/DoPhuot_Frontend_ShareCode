@@ -2,9 +2,9 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { history } from '../../../App';
 import { _admin, _product } from '../../../utils/Utils/ConfigPath';
 import { BsBackspace } from 'react-icons/bs';
-import { Select, Input } from 'antd';
+import { Select, Input, Switch } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddProductAction, GetDetailProductAction } from '../../../redux/Actions/QuanLyProductAction';
+import { GetDetailProductAction, UpdateProductAction } from '../../../redux/Actions/QuanLyProductAction';
 import { GetAllCateAction } from '../../../redux/Actions/QuanLyCategoryAction';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -37,6 +37,7 @@ export default function SuaProduct(props) {
             Material: detailProduct?.Material,
             Price: detailProduct?.Price,
             Discount: detailProduct?.Discount,
+            Hot: detailProduct?.Hot,
             Description: detailProduct?.Description,
             products: {},
         },
@@ -62,6 +63,9 @@ export default function SuaProduct(props) {
             Discount: Yup.number()
                 .required("Không được trống !"),
 
+            Hot: Yup.string()
+                .required("Không được trống !"),
+
             Description: Yup.string()
                 .required("Không được trống !"),
 
@@ -83,15 +87,16 @@ export default function SuaProduct(props) {
                 }
             }
 
-            dispatch(AddProductAction(dataProduct));
-            // console.log('first', dataGlasses)
+            dispatch(UpdateProductAction(id, dataProduct));
 
         }
     })
     function changeSelect(value) {
         formik.setFieldValue('Category_ID', value)
     }
-
+    const onChange = (checked) => {
+        formik.setFieldValue('Hot', checked)
+    };
     const [img, setImg] = useState('');
     const handleChangeFile = (e) => {
 
@@ -187,6 +192,13 @@ export default function SuaProduct(props) {
                                 )}
                             </div>
                             <div className='my-4'>
+                                <div>Hot:</div>
+                                <Switch name='Hot' onChange={onChange} checked={formik.values.Hot} />
+                                {formik.errors.Hot && formik.touched.Hot && (
+                                    <p className='m-0 mt-1 text-red-600'>{formik.errors.Hot}</p>
+                                )}
+                            </div>
+                            <div className='my-4'>
                                 <div>Mô tả:</div>
                                 <TextArea name='Description' onChange={formik.handleChange} value={formik.values.Description} rows={9} style={{ boxShadow: 'rgb(0 0 0 / 10%) 0px 10px 25px -5px, rgb(0 0 0 / 4%) 0px 10px 10px -5px' }} />
                                 {formik.errors.Description && formik.touched.Description && (
@@ -197,7 +209,7 @@ export default function SuaProduct(props) {
 
                     </div>
                     <div className='text-center'>
-                        <button type='submit' className='text-center p-3 border border-yellow-600 w-36 text-xl font-bold rounded text-yellow-500 hover:bg-yellow-600 hover:text-white'>Thêm</button>
+                        <button type='submit' className='text-center p-3 border border-yellow-600 w-36 text-xl font-bold rounded text-yellow-500 hover:bg-yellow-600 hover:text-white'>Sửa</button>
                     </div>
                 </form>
 

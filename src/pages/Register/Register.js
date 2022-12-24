@@ -15,7 +15,7 @@ export default function Register() {
         initialValues: {
             Username: '',
             Password: '',
-            Role: "ADMIN"
+            Role: "CLIENT"
         },
         validationSchema: Yup.object({
             Username: Yup.string()

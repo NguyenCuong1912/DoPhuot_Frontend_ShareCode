@@ -56,16 +56,16 @@ export default function AdminTemplate(props) {
                     </div>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" style={{ backgroundColor: 'transparent' }}>
                         <Menu.Item key='1' >
-                            <NavLink className='text-black' to={`${_admin}${_account}`} >Accounts</NavLink>
+                            <NavLink className='text-black nav-link' to={`${_admin}${_account}`} >Accounts</NavLink>
                         </Menu.Item>
                         <Menu.Item key='2' >
-                            <NavLink className='text-black' to={`${_admin}${_cate}`} >Category</NavLink>
+                            <NavLink className='text-black nav-link' to={`${_admin}${_cate}`} >Category</NavLink>
                         </Menu.Item>
                         <Menu.Item key='3' >
-                            <NavLink className='text-black' to={`${_admin}${_product}`}>Product</NavLink>
+                            <NavLink className='text-black nav-link' to={`${_admin}${_product}`}>Product</NavLink>
                         </Menu.Item>
                         <Menu.Item key='4'  >
-                            <NavLink className='text-black' to={`${_admin}${_bill}`}>Bill</NavLink>
+                            <NavLink className='text-black nav-link' to={`${_admin}${_bill}`}>Bill</NavLink>
                         </Menu.Item>
                     </Menu>
                 </Sider>

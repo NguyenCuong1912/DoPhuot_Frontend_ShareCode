@@ -43,7 +43,7 @@ export default function QuanLyAccount() {
             render: (text, user) => {
                 return <Fragment>
                     {user.PhoneNumber === null ?
-                        <div className='text-yellow-500 flex text-base'>
+                        <div className='text-yellow-500 flex text-base italic'>
                             <span>Chưa có số điện thoại...</span>
                         </div>
                         : <span>{user.PhoneNumber}</span>}
@@ -56,7 +56,7 @@ export default function QuanLyAccount() {
             render: (text, user) => {
                 return <Fragment>
                     {user.Address === null ?
-                        <div className='text-yellow-500 flex text-base'>
+                        <div className='text-yellow-500 flex text-base italic'>
                             <span>Chưa có địa chỉ...</span>
                         </div>
                         : <span>{user.Address}</span>}

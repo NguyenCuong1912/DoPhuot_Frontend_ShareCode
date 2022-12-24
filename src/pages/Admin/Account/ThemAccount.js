@@ -44,6 +44,7 @@ export default function ThemAccount() {
         }),
         onSubmit: values => {
             dispatch(AddUserAction(values))
+            // console.log('first', values)
         }
     })
     function changeSelect(value) {

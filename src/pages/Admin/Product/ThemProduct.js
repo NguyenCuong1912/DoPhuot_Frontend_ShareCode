@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { history } from '../../../App';
 import { _admin, _product } from '../../../utils/Utils/ConfigPath';
 import { BsBackspace } from 'react-icons/bs';
-import { Input, Select } from 'antd';
+import { Input, Select, Switch } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetAllCateAction } from '../../../redux/Actions/QuanLyCategoryAction';
 import { useFormik } from 'formik';
@@ -31,6 +31,7 @@ export default function ThemProduct() {
             Material: '',
             Price: '',
             Discount: 0,
+            Hot: '',
             Description: '',
             products: {},
         },
@@ -56,6 +57,9 @@ export default function ThemProduct() {
             Discount: Yup.number()
                 .required("Không được trống !"),
 
+            Hot: Yup.string()
+                .required("Không được trống !"),
+
             Description: Yup.string()
                 .required("Không được trống !"),
 
@@ -76,13 +80,15 @@ export default function ThemProduct() {
             }
 
             dispatch(AddProductAction(dataProduct));
-            // console.log('first', dataGlasses)
 
         }
     })
     function changeSelect(value) {
         formik.setFieldValue('Category_ID', value)
     }
+    const onChange = (checked) => {
+        formik.setFieldValue('Hot', checked)
+    };
 
     const [img, setImg] = useState('');
     const handleChangeFile = (e) => {
@@ -176,6 +182,13 @@ export default function ThemProduct() {
                                 <input type='number' name='Discount' onChange={formik.handleChange} className='p-2 px-4 border w-2/3 rounded drop-shadow-lg hover:border-yellow-500 focus:outline-none focus:border focus:border-yellow-500' placeholder='Ưu đãi...' />
                                 {formik.errors.Discount && formik.touched.Discount && (
                                     <p className='m-0 mt-1 text-red-600'>{formik.errors.Discount}</p>
+                                )}
+                            </div>
+                            <div className='my-4'>
+                                <div>Hot:</div>
+                                <Switch defaultChecked name='Hot' onChange={onChange} />
+                                {formik.errors.Hot && formik.touched.Hot && (
+                                    <p className='m-0 mt-1 text-red-600'>{formik.errors.Hot}</p>
                                 )}
                             </div>
                             <div className='my-4'>

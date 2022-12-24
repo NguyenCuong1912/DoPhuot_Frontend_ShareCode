@@ -37,7 +37,7 @@ export default function QuanLyProduct() {
             dataIndex: 'CategoryName',
             render: (text, item) => {
                 return <Fragment>
-                    {lstCate.map((lst, index) => {
+                    {lstCate?.map((lst, index) => {
                         return <span key={index}>{lst.id === item.Category_ID ? <span>{lst.CategoryName}</span> : ''}</span>
                     })}
                 </Fragment>
@@ -100,9 +100,17 @@ export default function QuanLyProduct() {
                     {item.Discount} %
                 </Fragment>
             },
-
         },
-
+        {
+            title: 'Hot',
+            dataIndex: 'Hot',
+            width: '7%',
+            render: (text, item) => {
+                return <Fragment>
+                    {item.Hot === true ? 'True' : 'False'}
+                </Fragment>
+            }
+        },
         {
             title: '',
             dataIndex: 'id',
