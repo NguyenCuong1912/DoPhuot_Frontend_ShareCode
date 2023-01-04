@@ -44,6 +44,7 @@ export default function ThemAccount() {
         }),
         onSubmit: values => {
             dispatch(AddUserAction(values))
+            // console.log('first', values)
         }
     })
     function changeSelect(value) {
@@ -64,12 +65,12 @@ export default function ThemAccount() {
                     <div className='p-4'>
                         <form onSubmit={formik.handleSubmit}>
                             <div className='mb-2'>Tài khoản:</div>
-                            <input type="text" name='Username' onChange={formik.handleChange} className='p-3 border-gray border rounded-lg focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 w-full' placeholder="Nhập tài khoản..." />
+                            <input type="text" name='Username' onChange={formik.handleChange} className='p-3 border-gray border rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 w-full' placeholder="Nhập tài khoản..." />
                             {formik.errors.Username && formik.touched.Username && (
                                 <p className='m-0 mt-1 text-red-600'>{formik.errors.Username}</p>
                             )}
                             <div className='mt-4 mb-2'>Mật khẩu:</div>
-                            <input type="text" name='Password' onChange={formik.handleChange} className='p-3 border-gray border rounded-lg focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 w-full' placeholder="Nhập mật khẩu..." />
+                            <input type="text" name='Password' onChange={formik.handleChange} className='p-3 border-gray border rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 w-full' placeholder="Nhập mật khẩu..." />
                             {formik.errors.Password && formik.touched.Password && (
                                 <p className='m-0 mt-1 text-red-600'>{formik.errors.Password}</p>
                             )}
@@ -83,12 +84,12 @@ export default function ThemAccount() {
                                 <p className='m-0 mt-1 text-red-600'>{formik.errors.Role}</p>
                             )}
                             <div className='mt-4 mb-2'>Số điện thoại:</div>
-                            <input type="text" name='PhoneNumber' onChange={formik.handleChange} className='p-3 border-gray border rounded-lg focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 w-full' placeholder="Nhập số điện thoại..." />
+                            <input type="text" name='PhoneNumber' onChange={formik.handleChange} className='p-3 border-gray border rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 w-full' placeholder="Nhập số điện thoại..." />
                             {formik.errors.PhoneNumber && formik.touched.PhoneNumber && (
                                 <p className='m-0 mt-1 text-red-600'>{formik.errors.PhoneNumber}</p>
                             )}
                             <div className='mt-4 mb-2'>Địa chỉ:</div>
-                            <input type="text" name='Address' onChange={formik.handleChange} className='p-3 border-gray border rounded-lg focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 w-full' placeholder="Nhập địa chỉ..." />
+                            <input type="text" name='Address' onChange={formik.handleChange} className='p-3 border-gray border rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 w-full' placeholder="Nhập địa chỉ..." />
                             {formik.errors.Address && formik.touched.Address && (
                                 <p className='m-0 mt-1 text-red-600'>{formik.errors.Address}</p>
                             )}

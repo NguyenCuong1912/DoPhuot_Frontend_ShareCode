@@ -2,7 +2,13 @@ import React, { Fragment } from 'react'
 import { _mu1 } from '../../utils/Utils/ImgPath'
 import OneProduct from './OneProduct'
 
-export default function ProductHome() {
+export default function ProductHome(props) {
+    const renderProduct = () => {
+        return props.product?.map((item, index) => {
+            return <OneProduct key={index} product={item} />
+
+        })
+    }
     return (
         <Fragment>
             <div className='text-center my-24'>
@@ -23,12 +29,11 @@ export default function ProductHome() {
                     </div>
                     <div className='col-span-2'>
                         <div className='grid grid-cols-4 flex-wrap'>
+                            {/* <OneProduct />
                             <OneProduct />
                             <OneProduct />
-                            <OneProduct />
-                            <OneProduct />
-                            <OneProduct />
-
+                            <OneProduct /> */}
+                            {renderProduct()}
                         </div>
                     </div>
                 </div>

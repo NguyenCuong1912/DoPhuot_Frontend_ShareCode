@@ -3,7 +3,7 @@ import { _logo } from '../../../utils/Utils/ImgPath'
 import { BsBasket, BsPersonCircle, BsSearch } from "react-icons/bs";
 import { NavLink } from 'react-router-dom';
 import NavHeader from './NavHeader';
-import { _account, _home, _login, _order, _register } from '../../../utils/Utils/ConfigPath';
+import { _account, _cart, _edit, _home, _login, _order, _register } from '../../../utils/Utils/ConfigPath';
 import { useSelector } from 'react-redux';
 import { Dropdown, Menu, Space } from 'antd';
 import { history } from '../../../App';
@@ -14,12 +14,19 @@ import _ from 'lodash'
 export default function Header() {
     const { userLogin } = useSelector(state => state.QuanLyAccountReducer);
 
+    const { cart } = useSelector(state => state.QuanLyCartReducer);
+
+    let number = 0;
+    cart?.forEach(element => {
+        number += element.Quantity
+    })
+
     const menu = (
         <Menu
             items={[
                 {
                     label: <button onClick={() => {
-                        history.push(`${_account}`);
+                        history.push(`${_account}${_edit}`);
                         window.location.reload();
                     }} className="self-center px-4 py-2 hover:font-bold hover:text-yellow-500">Thông tin tài khoản</button>,
                     key: '0',
@@ -85,7 +92,10 @@ export default function Header() {
                         <div className='col-span-3 flex justify-end items-center'>
                             <div className='flex items-center uppercase'>
                                 {operations}
-                                <NavLink to='' className='ml-4 text-black text-2xl hover:text-yellow-500'><BsBasket /></NavLink>
+                                <NavLink to={`${_cart}`} className='ml-4 flex text-black text-2xl hover:text-yellow-500'>
+                                    <BsBasket />
+                                    <span className='text-base text-red-500 -mt-1'>({number})</span>
+                                </NavLink>
                             </div>
                         </div>
                     </div>
