@@ -15,8 +15,14 @@ class QuanLyCheckoutService extends baseService {
   checkoutWithMonth = () => {
     return this.get("Checkout/Total/Month/Chart");
   };
-  changeStatusAwait = () => {
-    return this.put("Checkout/ChangeStatusAwait");
+  changeStatusAwait = (data) => {
+    return this.put("Checkout/ChangeStatusAwait", data);
+  };
+  changeStatusDelivery = (data) => {
+    return this.put("Checkout/ChangeStatusDelivery", data);
+  };
+  changeStatusDone = (data) => {
+    return this.put("Checkout/ChangeStatusDone", data);
   };
   getBillDetail = (id) => {
     return this.get(`Checkout/Detail/${id}`);

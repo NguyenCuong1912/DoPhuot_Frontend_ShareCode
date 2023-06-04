@@ -5,7 +5,12 @@ import { history } from "../../../App";
 import { _admin, _bill, _detail } from "../../../utils/Utils/ConfigPath";
 import { AiFillHeart, AiOutlineMore } from "react-icons/ai";
 import moment from "moment";
-import { GetListBill } from "../../../redux/Actions/QuanLyCheckoutAction";
+import {
+  ChangeStatusAwaitAction,
+  ChangeStatusDeliveryAction,
+  ChangeStatusDoneAction,
+  GetListBill,
+} from "../../../redux/Actions/QuanLyCheckoutAction";
 
 export default function QuanLyBill() {
   const { Search } = Input;
@@ -16,9 +21,29 @@ export default function QuanLyBill() {
     dispatch(GetListBill());
   }, []);
   //! Function
-  const handleChangeStatusAwait = (value) => {
-    console.log("cehcek", value.checked);
+  const handleChangeStatusAwait = (bill, value) => {
+    const data = {
+      id: bill.id,
+      StausAwait: value.checked,
+    };
+    dispatch(ChangeStatusAwaitAction(data));
   };
+  const handleChangeDelivery = (bill, value) => {
+    const data = {
+      id: bill.id,
+      StatusDelivery: value.checked,
+    };
+
+    dispatch(ChangeStatusDeliveryAction(data));
+  };
+  const handleChangeDone = (bill, value) => {
+    const data = {
+      id: bill.id,
+      StatusDone: value.checked,
+    };
+    dispatch(ChangeStatusDoneAction(data));
+  };
+
   const onSearch = (value) => {
     console.log(value);
   };
@@ -100,18 +125,69 @@ export default function QuanLyBill() {
     },
     {
       title: "Chuẩn bị hàng xong",
-      dataIndex: "createdAt",
+      dataIndex: "StatusAwait",
       render: (text, cart) => {
         return (
-          <div className="flex justify-center">
-            <Checkbox
-              onChange={(event) => {
-                handleChangeStatusAwait(event.target);
-              }}
-              style={{ transform: "scale(1.5)" }}
-            />
+          <div className="flex flex-col justify-center gap-2">
+            <div className="flex justify-start gap-2">
+              <Checkbox
+                checked={cart.StatusAwait}
+                disabled={cart.StatusDelivery}
+                onChange={(event) => {
+                  handleChangeStatusAwait(cart, event.target);
+                }}
+                style={{ transform: "scale(1.5) mr-4" }}
+              />
+              Done Chuẩn bị hàng
+            </div>
+            <div className="flex justify-start gap-2">
+              <Checkbox
+                checked={cart.StatusDelivery}
+                disabled={cart.StatusDelivery}
+                onChange={(event) => {
+                  handleChangeDelivery(cart, event.target);
+                }}
+                style={{ transform: "scale(1.5) mr-4" }}
+              />
+              Đang giao hàng
+            </div>
+            <div className="flex justify-start gap-2">
+              {cart.StatusDelivery ? (
+                <Fragment>
+                  <Checkbox
+                    checked={cart.StatusDone}
+                    disabled={cart.StatusDone}
+                    onChange={(event) => {
+                      handleChangeDone(cart, event.target);
+                    }}
+                    style={{ transform: "scale(1.5) mr-4" }}
+                  />
+                  Giao hàng thành công
+                </Fragment>
+              ) : null}
+            </div>
           </div>
         );
+      },
+    },
+    {
+      title: "Trạng thái",
+      dataIndex: "StatusDone",
+      render: (text, cart) => {
+        //! 1 done - 2 delivery  3- await
+        let status;
+        if (cart.StatusDone) {
+          status = "Giao hàng thành công";
+        } else if (!cart.StatusDone && cart.StatusDelivery) {
+          status = "Đang vận chuyển";
+        } else if (
+          !cart.StatusDone &&
+          !cart.StatusDelivery &&
+          cart.StatusAwait
+        ) {
+          status = "Đang chuẩn bị hàng";
+        }
+        return <span className="text-base text-green-500">{status}</span>;
       },
     },
 

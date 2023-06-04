@@ -123,9 +123,40 @@ export const GetTotalBilByMonth = () => {
   };
 };
 
-export const ChangeStatusAwait = () => {
-  try {
-  } catch (error) {
-    message.error("ERROR");
-  }
+export const ChangeStatusAwaitAction = (data) => {
+  return async (dispatch) => {
+    try {
+      const result = await quanLyCheckoutService.changeStatusAwait(data);
+      if (result.status === 200) {
+        dispatch(GetListBill());
+      }
+    } catch (error) {
+      message.error("ERROR");
+    }
+  };
+};
+export const ChangeStatusDeliveryAction = (data) => {
+  return async (dispatch) => {
+    try {
+      const result = await quanLyCheckoutService.changeStatusDelivery(data);
+      if (result.status === 200) {
+        dispatch(GetListBill());
+      }
+    } catch (error) {
+      message.error("ERROR");
+    }
+  };
+};
+
+export const ChangeStatusDoneAction = (data) => {
+  return async (dispatch) => {
+    try {
+      const result = await quanLyCheckoutService.changeStatusDone(data);
+      if (result.status === 200) {
+        dispatch(GetListBill());
+      }
+    } catch (error) {
+      message.error("ERROR");
+    }
+  };
 };
